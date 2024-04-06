@@ -83,3 +83,31 @@
 </div>
 
 <%- include("../partials/footer") %>
+
+<script>
+  // Wait for the DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    const priceSlider = document.getElementById('price-slider');
+    const priceValue = document.getElementById('price-value');
+
+    // Fetch all product containers
+    const productContainers = document.querySelectorAll('.product-container .col-6');
+
+    // Update the price value display when slider is moved
+    priceSlider.addEventListener('input', function() {
+      const selectedPrice = parseInt(priceSlider.value);
+      priceValue.textContent = 'Rs.' + selectedPrice;
+
+      // Loop through all products and hide/show based on the price filter
+      productContainers.forEach(function(product) {
+        const productPrice = parseInt(product.querySelector('.card-body h6 span:first-child').textContent.replace('Rs.', '').trim());
+        if (productPrice <= selectedPrice) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+    });
+  });
+
+</script>
