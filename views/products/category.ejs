@@ -1,2 +1,30 @@
 <%- include("../partials/header") %>
+
+<div class="container">
+  <div class="row1">
+    <div class="col-md-3 mt-3">
+      <label for="price-slider">Filter by Price:</label>
+      <div class="price-filter" >
+        <!-- <label for="price-slider">Filter by Price:</label> -->
+        <input type="range" id="price-slider" min="0" max="2000" value="2000"> 
+        <!-- <span id="price-value">Rs. 1000</span> -->
+      </div>
+      <span id="price-value">Rs.2000</span>
+    </div>
+
+    <!-- Product Container on the Right -->
+    <div class="col-md-9">
+      <div class="jumbotron text-center">
+        <h3 style="text-transform: capitalize">
+          <%= category + (category === "all" ? " Products" : "") %>
+        </h3>
+      </div>
+
+      <div class="product-container">
+        <!-- Product Cards will be inserted here -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <%- include("../partials/footer") %>
