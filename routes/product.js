@@ -11,7 +11,9 @@ router.get("/", function(req, res) {
 	  }
 	else {
 		let categories = products.map(product => product.category);
-		categories = [...new Set(categories)];		
+		categories = [...new Set(categories)];
+		
+		// Find new products
 		Product.find({ new: true }, function(err, newProducts) {
 		  if (err) {
 			req.flash("error", "Something went wrong!!");
