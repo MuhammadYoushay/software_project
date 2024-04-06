@@ -1,6 +1,5 @@
 var express = require("express");
 var router = express.Router();
-
 var Product = require("../models/product");
 var User = require("../models/user");
 
@@ -126,6 +125,5 @@ function isAdmin(req,res,next) {
 		res.redirect("/login");
 	}
 }
-
 
 module.exports = router;
