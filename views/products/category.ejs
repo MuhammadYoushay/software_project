@@ -21,93 +21,10 @@
       </div>
 
       <div class="product-container">
-        <% products.forEach(function(product){ %>
-        <div class="col-6 col-md-4 col-lg-3" style="background: white">
-          <div class="card my-3 p-0" style="background: white">
-            <a href="/products/<%= product._id %>">
-              <!-- <div
-                class="resp-img pro-ind my-2"
-                style="background-image: url('<%= product.image %>')" 
-              ></div> -->
-            </a>
-            <div class="card-body p-2 p-lg-3">
-              <img
-                src="<%= product.image %>"
-                alt="<%= product.name %>"
-                class="resp-img1 pro-ind my-2">
-              <a href="/products/<%= product._id %>">
-                <div class="card-title a" style="color: black; font-weight: bold;">
-                  <%= product.name.substring(0,50) %><% if(product.name.length>50) {
-                  %>&nbsp...<% } %>
-                </div>
-              </a>
-
-              <h6 style="color: black">
-                <span class="mr-1">Rs.<%= product.price %></span>
-                <span class="nowrap">
-                  <span class="mrp mr-1">Rs.<%= product.mrp %></span>
-                  <span class="disc" style="color: #8C8C88"
-                    ><%= product.disc_perc %>% off</span>
-                </span>
-              </h6>
-
-              <h6 style="color: black">
-                <% if(currentUser && currentUser.cart.items.some(function(cartItem){
-                return cartItem.product._id.equals(product._id); })) { %>
-                <a href="/cart"
-                  ><button
-                    class="btn btn-sm btn-primary mr-md-1"
-                    style="color: white; background: black"
-                  >
-                    Go to cart
-                  </button></a
-                >
-                <% } else { %>
-                <a href="/cart/new/<%= product._id %>/index"
-                  ><button class="btn btn-sm btn-info mr-md-1">
-                    Add to cart
-                  </button></a
-                >
-                <% } %>
-                <span class="nowrap disc" style="color: #8C8C88"
-                  >Save Rs.<%= product.discount %></span
-                >
-              </h6>
-            </div>
-          </div>
-        </div>
-        <% }); %>
+        <!-- Product Cards will be inserted here -->
       </div>
     </div>
   </div>
 </div>
 
 <%- include("../partials/footer") %>
-
-<script>
-  // Wait for the DOM to be fully loaded
-  document.addEventListener('DOMContentLoaded', function() {
-    const priceSlider = document.getElementById('price-slider');
-    const priceValue = document.getElementById('price-value');
-
-    // Fetch all product containers
-    const productContainers = document.querySelectorAll('.product-container .col-6');
-
-    // Update the price value display when slider is moved
-    priceSlider.addEventListener('input', function() {
-      const selectedPrice = parseInt(priceSlider.value);
-      priceValue.textContent = 'Rs.' + selectedPrice;
-
-      // Loop through all products and hide/show based on the price filter
-      productContainers.forEach(function(product) {
-        const productPrice = parseInt(product.querySelector('.card-body h6 span:first-child').textContent.replace('Rs.', '').trim());
-        if (productPrice <= selectedPrice) {
-          product.style.display = 'block';
-        } else {
-          product.style.display = 'none';
-        }
-      });
-    });
-  });
-
-</script>
