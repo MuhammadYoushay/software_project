@@ -1,2 +1,48 @@
 <%- include("../partials/header") %>
+
+  <div class="d-flex justify-content-center">
+    <img src="https://imgtr.ee/images/2023/12/03/5bb328e87623a23321619dbb51d57554.png" alt="Banner Image" class="img-fluid rotating-image fade-in" style="max-width: 90%; max-height: 300px; border-radius: 100%;">
+  </div>
+
+  <h3 style="text-align:center" class="mb-3"></h3>
+
+  <div class="row">
+
+  <% categories.forEach(category => { %>
+
+    <a class="col-lg-3 col-md-6" href="/products/category/<%= category.replaceAll(" ","-") %>">
+      <div class="category-container text-center mb-3">
+        <span><%= category %></span>
+      </div>
+    </a>
+
+  <% }) %>
+
+  </div>
+
+  <div class="row4" style="justify-content: space-between;"> 
+    <div class="jumbotron45 text-center">
+      <h3 style="text-transform: capitalize; background-color: black; color: white; border-radius: 10px; padding: 2px;">
+        New Arrivals
+      </h3>
+
+      <div class="row3" style="padding-bottom: 20px; padding-top: 20px">
+        <% newProducts.forEach(product => { %>
+        <div class="col-6 col-md-6" >
+            <div class="card-body1">
+              <img class="resp-img1 pro-ind my-2" src="<%= product.image %>" alt="Card image">
+              <h4  class="card-title a" style="color: black; font-weight: bold;" ><a href="/products/<%= product._id %>">
+                <div class="card-title a" style="color: black; font-weight: bold;">
+                  <%= product.name.substring(0,50) %><% if(product.name.length>50) {
+                  %>&nbsp...<% } %>
+                </div>
+              </a>
+            </h4>
+              <p class="card-text">Rs.<%= product.price %></p>
+            </div>
+        </div>
+        <% }); %>
+      </div>
+
+    </div>
 <%- include("../partials/footer") %>
