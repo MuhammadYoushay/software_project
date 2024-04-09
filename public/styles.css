@@ -387,7 +387,226 @@ input[type='search']::-webkit-search-results-decoration {
   background-color: #0069d9;
 }
 
+.category-container {
+  border: 3px solid black;
+  color: black;
+  padding-left: 20px;
+  border-radius: 1rem;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  background: white; 
+  height: 50px;
+}
+
+.category-container span {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.category-container:hover {
+  background-color: black;
+  color: white;
+  border: 3px solid white;
+}
+
+.product-container {
+  gap: 1rem;
+  margin: 1rem;
+  display: flex; 
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* align-items: center; */
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  height: 500px;
+}
+
+.product-container::-webkit-scrollbar {
+  height: 2px;
+  width: 3px; 
+}
+
+.product-container::-webkit-scrollbar-thumb {
+  background-color: black; 
+  border-radius: 6px; 
+}
+
+.row1 {
+  /* gap: 1rem; */
+  /* margin: 1rem; */
+  display: flex; 
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  align-items: center;
+  -webkit-overflow-scrolling: touch;
+  /* overflow-y: scroll;
+  height: 800px; */
+}
+
+.price-filter {
+  margin-bottom: 20px;
+}
+
+.jumbotron {
+  background: white ;
+  color: black;
+  width: 100%;
+  border-radius: 0;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0%;
+}
+
+.jumbotronC {
+  background: white ;
+  color: black;
+  width: 50%;
+  border-radius: 0;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0%;
+}
+
+.jumbotron45 {
+  background: white ;
+  color: black;
+  width: 45%;
+  border-radius: 0;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0%;
+}
 
 
+.jumbotron25 {
+  background: white ;
+  color: black;
+  width: 25%;
+  border-radius: 0;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0%;
+  height: 100%;
+}
+
+.jumbotron30 {
+  background: white ;
+  color: black;
+  width: 30%;
+  border-radius: 0;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0%;
+  height: 100%;
+}
+
+.jumbotron435 {
+  background: white ;
+  color: black;
+  width: 43.5%;
+  border-radius: 0;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0%;
+  height: 100%;
+}
+
+.card-body{
+  border: 1px solid black;
+  height: auto;
+  padding: 10px;
+  border: 1px solid black;
+  box-shadow:  -1px 1px #a3b2cc,
+       -2px 2px #a3b2cc,
+       -3px 3px #a3b2cc,
+       -4px 4px #a3b2cc,
+       -5px 5px #a3b2cc;
+}
+
+.card-body1{
+  /* border: 1px solid black; */
+  height: 310px;
+  width: 180px;
+  padding: 10px;
+  border: 1px solid black;
+  box-shadow:  -1px 1px #a3b2cc,
+       -2px 2px #a3b2cc,
+       -3px 3px #a3b2cc,
+       -4px 4px #a3b2cc,
+       -5px 5px #a3b2cc;
+}
+/* 
+@media screen and (max-width: 768px) {
+  .row{
+    flex-direction: column;
+    height: 300px;
+    overflow-y: scroll;
+  }
+  .col-6 .col-md-6{
+    width: 100%;
+  }
+  .row3{
+    justify-content: space-between;
+  }
+  .card-body1{
+    justify-content: space-between;
+  }
+} */
+
+.col-6 .col-md-6{
+  width: 100%;
+}
+.card-body2{
+  /* border: 1px solid black; */
+  text-align: center;
+  align-items: center;
+  height: 310px;
+  width: 95%;
+  padding: 10px;
+  /* margin: 20px; */
+  /* margin-top: 40px;
+    margin-bottom: 60px; */
+  border: 1px solid black;
+  box-shadow:  -1px 1px #a3b2cc,
+       -2px 2px #a3b2cc,
+       -3px 3px #a3b2cc,
+       -4px 4px #a3b2cc,
+       -5px 5px #a3b2cc;
+}
+.card-body3{
+  /* border: 1px solid black; */
+  text-align: center;
+  align-items: center;
+  height: 100%;
+  width: 95%;
+  padding: 10px;
+  margin: 20px;
+  border: 1px solid black;
+  box-shadow:  -1px 1px #a3b2cc,
+       -2px 2px #a3b2cc,
+       -3px 3px #a3b2cc,
+       -4px 4px #a3b2cc,
+       -5px 5px #a3b2cc;
+}
+
+.card-body4{
+  /* border: 1px solid black; */
+  text-align: center;
+  align-items: center;
+  height: 310px;
+  width: 100%;
+  padding: 10px;
+  margin: 20px;
+  border: 1px solid black;
+  box-shadow:  -1px 1px #a3b2cc,
+       -2px 2px #a3b2cc,
+       -3px 3px #a3b2cc,
+       -4px 4px #a3b2cc,
+       -5px 5px #a3b2cc;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
 
