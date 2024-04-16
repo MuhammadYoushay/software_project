@@ -14,18 +14,26 @@ router.get("/new/:id/:return",inCart,function(req,res)
 			req.flash("error","Product not found!!");
 			res.redirect("/products");
 		} else {
-			req.user.cart.cart_total+=product.mrp;
-			req.user.cart.discount+=product.discount;
-			req.user.cart.total+=product.price;
-			req.user.save();
+            req.user.cart.cart_total += product.mrp;
+            req.user.cart.discount += product.discount;
+            req.user.cart.total += product.price;
+            req.user.save(function(err) {
+                if (err) {
+                    req.flash("error", "Could not update cart!");
+                    res.redirect("/products");
+                } else {
+                    // Make sure session is updated
+                    req.session.passport.user = req.user;
+                    req.flash("success", "Product added to Cart!!");
+                    if (req.params.return == "show") {
+                        res.redirect("/products/" + req.params.id);
+                    } else {
+                        res.redirect("/products");
+                    }
+                }
+			});
 		}
 	});
-	req.flash("success","Product added to Cart!!");
-	if(req.params.return=="show") {
-		res.redirect("/products/" + req.params.id);
-	} else {
-		res.redirect("/products");
-	}
 });
 
 router.get("/",isLoggedIn,function(req,res){
@@ -102,5 +110,6 @@ function isLoggedIn(req,res,next){
 	req.flash("error","Login to continue!!");
 	res.redirect("/login");
 }
+
 
 module.exports = router;

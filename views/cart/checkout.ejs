@@ -4,7 +4,9 @@
 	document.addEventListener('DOMContentLoaded', function () {
     var stripe = Stripe('pk_test_51InWVqHD5VsXTHduqGios2AnmjrBnnBLLH6UTi9bCf2oqDEuGkTUMH4zxvuxIeVKjvEkX2IVjV0sk1Vt2Ulr5cmI002YxvSNYu'); // Replace with your Stripe public key
     var elements = stripe.elements();
-    var card = elements.create('card');
+    var card = elements.create('card' ,{
+        hidePostalCode: true
+    });
     card.mount('#card-element');
 
     card.addEventListener('change', function(event) {
@@ -19,7 +21,7 @@
     var form = document.querySelector('form');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
-
+        document.getElementById('loading-spinner').style.display = 'block';
         stripe.createToken(card).then(function(result) {
             if (result.error) {
                 // Inform the user if there was an error
@@ -63,7 +65,7 @@
 				<input type="number" name="address[pin]" placeholder="Pin Code" class="form-control" required>
 			</div>
 		</div>
-        <div class="row1 my-3">
+		<div class="row1 my-3">
 			<div class="col">
 				<h6>Payment Method</h6>
 				<div id="card-element" class="form-control">
@@ -73,8 +75,9 @@
 				<input type="hidden" name="stripeToken" id="stripeToken">
 			</div>
 		</div>
-		
+		<div id = "loading-spinner" class="lds-dual-ring"></div>
 		<button class="btn btn-success">Place Order</button>
+        
 	</form>
 </div>
 
