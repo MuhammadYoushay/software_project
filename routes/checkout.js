@@ -3,12 +3,26 @@ var router = express.Router();
 var Order = require("../models/order");
 var OrderCount = require("../models/orderCount");
 var User = require("../models/user");
+var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 
 router.get("/",isLoggedIn,function(req,res){
 	res.render("cart/checkout",{user: req.user});
 });
 
 router.post("/",isLoggedIn,function(req,res){
+	var token = req.body.stripeToken; // The Stripe token submitted from the form
+    var chargeAmount = req.user.cart.total * 100; // Convert to cents
+    var charge = stripe.charges.create({
+        amount: chargeAmount,
+        currency: "pkr",
+        source: token,
+        description: "Test Charge"
+    }, function(err, charge) {
+        if (err) {
+            req.flash("error", err.message);
+            return res.redirect("/checkout");
+        }
 	OrderCount.findOne({},function(err,orderCountObject) {
 		if(err || !orderCountObject) {
 			req.flash("error","Something went wrong!!");
@@ -24,7 +38,7 @@ router.post("/",isLoggedIn,function(req,res){
 					name: req.body.name,
 					address: req.body.address,
 					contactNo: req.body.contactNo,
-					paymentMode: 'COD',
+					paymentMode: 'Card',
 					checkoutCart: {
 						items: [],
 						cart_total: user.cart.cart_total,
@@ -66,6 +80,7 @@ router.post("/",isLoggedIn,function(req,res){
 			});
 		}
 	});
+});
 });
 
 function isLoggedIn(req,res,next){
