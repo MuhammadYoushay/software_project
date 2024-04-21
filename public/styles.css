@@ -943,37 +943,6 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 
-.lds-dual-ring,
-.lds-dual-ring:after {
-  box-sizing: border-box;
-}
-.lds-dual-ring {
-  display: none;
-  width: 40px;
-  height: 40px;
-}
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 40px;
-  height: 40px;
-  margin: 8px;
-  border-radius: 0%;
-  border: 3.4px solid currentColor;
-  border-color: currentColor transparent currentColor transparent;
-  padding-bottom: 5px;
-  animation: lds-dual-ring 1.2s linear infinite;
-}
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-=======
-
 @media screen and (max-width: 768px) {
   #cart-count{
     right: 90%;
@@ -1086,6 +1055,5 @@ input[type='search']::-webkit-search-results-decoration {
     margin-bottom: 0px;
   }
 } 
-
 
 
