@@ -1,5 +1,4 @@
 require('dotenv').config();
-// require('./scripts/add_products');
 
 const express = require('express');
 const app = express();
