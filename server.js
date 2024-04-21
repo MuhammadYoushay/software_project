@@ -58,8 +58,7 @@ app.use('/cart', cartRoutes);
 app.use('/checkout', checkoutRoutes);
 app.use('/search', searchRoutes);
 
-const PORT = process.env.PORT || 3000; // Heroku assigns PORT via an environment variable
-
+port_used = 8080;
 app.listen(port_used, () => {
   console.log('Server started on port ' + port_used);
 });
