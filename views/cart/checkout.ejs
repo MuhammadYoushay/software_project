@@ -1,2 +1,84 @@
 <%- include("../partials/header") %>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+    var stripe = Stripe('pk_test_51InWVqHD5VsXTHduqGios2AnmjrBnnBLLH6UTi9bCf2oqDEuGkTUMH4zxvuxIeVKjvEkX2IVjV0sk1Vt2Ulr5cmI002YxvSNYu'); // Replace with your Stripe public key
+    var elements = stripe.elements();
+    var card = elements.create('card' ,{
+        hidePostalCode: true
+    });
+    card.mount('#card-element');
+
+    card.addEventListener('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    var form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        document.getElementById('loading-spinner').style.display = 'block';
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+                // Inform the user if there was an error
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Send the token to your server
+                document.getElementById('stripeToken').value = result.token.id;
+                // Submit the form
+                form.submit();
+            }
+        });
+    });
+});
+
+</script>
+<div class="container checkout-form">
+	<h4 class="mb-3">Enter Shipping details</h4>
+	<form action="/checkout" method="POST">
+		<div class="row1 my-md-2">
+			<div class="col-md-7 my-1 my-md-0 pr-md-1">
+				<input type="text" name="name" placeholder="Full Name" class="form-control" required>
+			</div>
+			<div class="col-md-5 my-1 my-md-0 pl-md-1">
+				<input type="number" name="contactNo" placeholder="Mobile No" class="form-control" required>
+			</div>
+		</div>
+		<div class="row1 my-md-2">
+			<div class="col my-1 my-md-0">
+				<input type="text" name="address[addr]" placeholder="Street/Area/Locality" class="form-control" required>
+			</div>
+		</div>
+		<div class="row1 my-md-2">
+			<div class="col-md-4 my-1 my-md-0 pr-md-1">
+				<input type="text" name="address[city]" placeholder="City" class="form-control" required>
+			</div>
+			<div class="col-md-4 my-1 my-md-0 px-md-1">
+				<input type="text" name="address[state]" placeholder="State" class="form-control" required>
+			</div>
+			<div class="col-md-4 my-1 my-md-0 pl-md-1">
+				<input type="number" name="address[pin]" placeholder="Pin Code" class="form-control" required>
+			</div>
+		</div>
+		<div class="row1 my-3">
+			<div class="col">
+				<h6>Payment Method</h6>
+				<div id="card-element" class="form-control">
+				  <!-- Stripe's card element will go here -->
+				</div>
+				<div id="card-errors" role="alert"></div> <!-- Display card errors here -->
+				<input type="hidden" name="stripeToken" id="stripeToken">
+			</div>
+		</div>
+		<div id = "loading-spinner" class="lds-dual-ring"></div>
+		<button class="btn btn-success">Place Order</button>
+        
+	</form>
+</div>
+
 <%- include("../partials/footer") %>

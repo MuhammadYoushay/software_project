@@ -1,2 +1,23 @@
 <%- include("../partials/header") %>
+
+<div class="container">
+    <div class="row3" style="padding-bottom: 20px; padding-top: 20px">
+        <% products.forEach(product => { %>
+            <div class="col-6 col-md-6" >
+                <div class="card-body1">
+                  <img class="resp-img1 pro-ind my-2" src="<%= product.image %>" alt="Card image">
+                  <h4  class="card-title a" style="color: black; font-weight: bold;" ><a href="/products/<%= product._id %>">
+                    <div class="card-title a" style="color: black; font-weight: bold;">
+                      <%= product.name.substring(0,50) %><% if(product.name.length>50) {
+                      %>&nbsp...<% } %>
+                    </div>
+                  </a>
+                </h4>
+                  <p class="card-text">Rs.<%= product.price %></p>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
 <%- include("../partials/footer") %>
