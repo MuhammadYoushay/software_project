@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var Product = require("../models/product");
 var User = require("../models/user");
-
+//adding prods to cart
 router.get("/new/:id/:return",inCart,function(req,res)
 	{
 	var cartItem = {
